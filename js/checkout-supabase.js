@@ -10,9 +10,9 @@
   // Constants
   const PRODUCT_PRICE = 850;
   const PRODUCT_NAME = "Premium Canvas Cross Bag";
-  const SUPABASE_URL = "https://drbpysumezfjbudxzxzj.supabase.co";
+  const SUPABASE_URL = "__SUPABASE_URL__";
   // Existing anon key from stb-landing
-  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRyYnB5c3VtZXpmamJ1ZHh6eHpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5NzE0MzQsImV4cCI6MjA4ODU0NzQzNH0.Ki7U_uXoTxZ4B9x1ExBuYOnTBZwXS9acMkx7CzlT2sA";
+  const SUPABASE_KEY = "__SUPABASE_ANON_KEY__";
 
   // Initialize Supabase Client
   let supabase = null;

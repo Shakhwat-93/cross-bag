@@ -1,0 +1,8 @@
+{
+  "name": "cross-bag",
+  "version": "1.0.0",
+  "description": "Cross Bag Landing Page",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
