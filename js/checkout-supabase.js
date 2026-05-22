@@ -566,6 +566,7 @@
         name: name,
         phone: phone,
         address: address,
+        ip_address: state.customerIp || '',
         items: orderedItems,
         timestamp: Date.now()
       }));
