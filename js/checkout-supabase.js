@@ -563,7 +563,9 @@
       localStorage.setItem('last_order_details', JSON.stringify({
         orderId: orderId,
         total: total,
+        name: name,
         phone: phone,
+        address: address,
         items: orderedItems,
         timestamp: Date.now()
       }));

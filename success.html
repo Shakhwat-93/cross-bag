@@ -547,6 +547,14 @@
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
         event: 'purchase',
+        user_data: {
+          phone_number: order.phone ? ('+88' + order.phone.replace(/[^0-9]/g, '').slice(-11)) : '', // Assuming BDT/BD numbers
+          address: {
+            first_name: order.name,
+            street: order.address,
+            country: 'BD'
+          }
+        },
         ecommerce: {
           transaction_id: order.orderId,
           value:          order.total,
