@@ -32,7 +32,7 @@
       id: "black",
       name: "Cross Bag - Black",
       colorCode: "#111827",
-      image: "images/cb-black.jpg",
+      image: "images/cb-black.webp",
       price: PRODUCT_PRICE,
       inStock: true
     },
@@ -40,7 +40,7 @@
       id: "teal",
       name: "Cross Bag - Teal",
       colorCode: "#0d9488",
-      image: "images/cb-teal.jpg",
+      image: "images/cb-teal.webp",
       price: PRODUCT_PRICE,
       inStock: true
     },
@@ -48,7 +48,7 @@
       id: "green",
       name: "Cross Bag - Olive Green",
       colorCode: "#3f6212",
-      image: "images/cb-green.jpg",
+      image: "images/cb-green.webp",
       price: PRODUCT_PRICE,
       inStock: true
     },
@@ -56,7 +56,7 @@
       id: "red",
       name: "Cross Bag - Red",
       colorCode: "#dc2626",
-      image: "images/cb-red.jpg",
+      image: "images/cb-red.webp",
       price: PRODUCT_PRICE,
       inStock: true
     },
@@ -64,7 +64,7 @@
       id: "maroon",
       name: "Cross Bag - Maroon",
       colorCode: "#7f1d1d",
-      image: "images/cb-maroon.jpg",
+      image: "images/cb-maroon.webp",
       price: PRODUCT_PRICE,
       inStock: true
     }
