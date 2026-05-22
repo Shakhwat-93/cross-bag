@@ -1,0 +1,168 @@
+/* Fraud Detection Popup Styles */
+.orderguard-blocked-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+    backdrop-filter: blur(5px);
+}
+
+.orderguard-blocked-popup-content {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.orderguard-blocked-popup-content h2 {
+    color: #e2401c;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.orderguard-blocked-popup-content p {
+    color: #4b5563;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.blocked-warning {
+    color: #e2401c;
+    font-weight: 500;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: rgba(226, 64, 28, 0.1);
+    border-radius: 0.5rem;
+}
+
+.support-text {
+    color: #4b5563;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}
+
+.orderguard-blocked-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.support-number-display {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 0.5rem 0 0 0;
+}
+
+.orderguard-blocked-close {
+    background: #e2401c;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 150px;
+    max-width: 200px;
+}
+
+.orderguard-blocked-close:hover {
+    background: #c51c06;
+    transform: translateY(-1px);
+}
+
+.orderguard-call-button {
+    background: #2563eb;
+    color: white !important;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-width: 200px;
+}
+
+.orderguard-call-button:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+    color: white !important;
+}
+
+.orderguard-call-button .dashicons {
+    font-size: 1.2rem;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Body class when popup is shown */
+body.user-blocked {
+    overflow: hidden;
+}
+
+/* Disabled state styles */
+body.user-blocked .woocommerce #respond input#submit,
+body.user-blocked .woocommerce a.button,
+body.user-blocked .woocommerce button.button,
+body.user-blocked .woocommerce input.button,
+body.user-blocked .woocommerce #respond input#submit.alt,
+body.user-blocked .woocommerce a.button.alt,
+body.user-blocked .woocommerce button.button.alt,
+body.user-blocked .woocommerce input.button.alt,
+body.user-blocked .widget_shopping_cart .checkout,
+body.user-blocked .widget_shopping_cart .wc-forward {
+    opacity: 0.5;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}
+
+body.user-blocked .quantity input {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Hide form elements when user is blocked */
+body.user-blocked .woocommerce-checkout,
+body.user-blocked .woocommerce-cart,
+body.user-blocked form[action*="add-to-cart"],
+body.user-blocked .woocommerce #respond input#submit,
+body.user-blocked .woocommerce a.button,
+body.user-blocked .woocommerce button.button,
+body.user-blocked .woocommerce input.button,
+body.user-blocked .woocommerce #respond input#submit.alt,
+body.user-blocked .woocommerce a.button.alt,
+body.user-blocked .woocommerce button.button.alt,
+body.user-blocked .woocommerce input.button.alt {
+    display: none !important;
+} 

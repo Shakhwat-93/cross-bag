@@ -1,0 +1,332 @@
+#orderguard-otp-verification {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#orderguard-otp-verification h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.otp-verification-container {
+    margin-top: 15px;
+}
+
+.otp-step {
+    margin-bottom: 15px;
+}
+
+#otp-input {
+    width: 200px;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 10px;
+    letter-spacing: 2px;
+}
+
+#send-otp-button,
+#verify-otp-button {
+    background-color: #2271b1;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+#send-otp-button:hover,
+#verify-otp-button:hover {
+    background-color: #135e96;
+}
+
+#send-otp-button:disabled,
+#verify-otp-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.resend-otp {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.resend-otp a {
+    color: #2271b1;
+    text-decoration: none;
+}
+
+.resend-otp a:hover {
+    text-decoration: underline;
+}
+
+.resend-otp a.disabled {
+    color: #999;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.countdown {
+    color: #666;
+    margin-left: 5px;
+}
+
+.otp-message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.otp-message.error {
+    background-color: #fef2f2;
+    border: 1px solid #f87171;
+    color: #dc2626;
+}
+
+.otp-message.success {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #16a34a;
+}
+
+.otp-message.info {
+    background-color: #eff6ff;
+    border: 1px solid #93c5fd;
+    color: #2563eb;
+}
+
+/* Order list verification status styles */
+.verification-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.verification-status .dashicons {
+    margin-right: 4px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+}
+
+.verification-status.verified {
+    background-color: #f0fdf4;
+    border: 1px solid #86efac;
+    color: #16a34a;
+}
+
+.verification-status.not-verified {
+    background-color: #fef2f2;
+    border: 1px solid #f87171;
+    color: #dc2626;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    #otp-input {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+
+    #send-otp-button,
+    #verify-otp-button {
+        width: 100%;
+    }
+}
+
+/* OTP Verification Modal */
+.orderguard-modal {
+    position: fixed;
+    z-index: 999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* When modal is displayed, make it flex container */
+.orderguard-modal[style*="display: block"],
+.orderguard-modal:not([style*="display: none"]) {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.orderguard-modal-content {
+    position: relative;
+    background-color: #ffffff;
+    width: 95%;
+    max-width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease-out;
+    margin: 0 auto;
+}
+
+.orderguard-modal-header {
+    background-color: #5D48E1;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.orderguard-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+.orderguard-modal-body {
+    padding: 25px;
+}
+
+.otp-message-banner {
+    background-color: #FFF9E5;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid #F8E7B9;
+}
+
+.otp-message {
+    padding: 12px;
+    margin: 15px 0;
+    border-radius: 6px;
+    text-align: center;
+    display: none;
+}
+
+.otp-message.error {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #f87171;
+}
+
+.otp-message.success {
+    background-color: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #86efac;
+}
+
+.otp-message.info {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #93c5fd;
+}
+
+.otp-input-container {
+    margin: 20px 0;
+}
+
+#otp-input,
+.otp-input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 5px;
+    box-sizing: border-box;
+}
+
+.otp-button {
+    background-color: #5D48E1;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.otp-button:hover {
+    background-color: #4A38CB;
+}
+
+.otp-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.countdown,
+.flexible-countdown {
+    font-weight: bold;
+    color: #5D48E1;
+    margin-left: 0;
+}
+
+#resend-otp,
+#flexible-resend-otp {
+    color: #5D48E1;
+    cursor: pointer;
+    text-decoration: underline;
+    display: none;
+    margin-left: 5px;
+}
+
+#resend-otp:hover,
+#flexible-resend-otp:hover {
+    color: #4A38CB;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+    .orderguard-modal-content {
+        width: 90%;
+    }
+    
+    .orderguard-modal-header h2 {
+        font-size: 16px;
+    }
+    
+    .orderguard-modal-body {
+        padding: 20px;
+    }
+}
+
+/* Focus styles for accessibility */
+#otp-input:focus,
+.otp-button:focus,
+#resend-otp:focus {
+    outline: 2px solid #6F5CEC;
+    outline-offset: 2px;
+} 

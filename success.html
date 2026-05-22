@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="bn" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>অর্ডার সফলভাবে সম্পন্ন হয়েছে — Cross Bag</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-M7HFS6DG');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- Fonts -->
+  <style>
+    @font-face {
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 200 800;
+      font-display: fallback;
+      src: url('fonts/Manrope-VariableFont_wght.woff2') format('woff2');
+    }
+    @font-face {
+      font-family: 'Hind Siliguri';
+      font-style: normal;
+      font-weight: 300 700;
+      font-display: fallback;
+      src: url('fonts/Inter-VariableFont_slnt%2Cwght.woff2') format('woff2');
+    }
+  </style>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS — matches cross-bag landing page
+    ============================================================ */
+    :root {
+      --primary:        #2d5a27;
+      --primary-hover:  #1e3c1a;
+      --primary-light:  #e8f5e4;
+      --accent:         #f39c12;
+      --bg:             #f4f7f2;
+      --surface:        #ffffff;
+      --text:           #0f172a;
+      --text-muted:     #64748b;
+      --border:         #e2e8f0;
+      --success:        #10b981;
+      --success-bg:     #d1fae5;
+      --radius-lg:      20px;
+      --radius-md:      12px;
+      --shadow-lg:      0 20px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(45,90,39,0.08);
+      --shadow-sm:      0 2px 8px rgba(0,0,0,0.06);
+      --font:           'Manrope', 'Hind Siliguri', sans-serif;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(45,90,39,0.08) 0%, transparent 70%);
+    }
+
+    /* ============================================================
+       HEADER LOGO BAR
+    ============================================================ */
+    .success-header {
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .success-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .success-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .success-logo-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--primary);
+    }
+
+    /* ============================================================
+       MAIN CARD
+    ============================================================ */
+    .success-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(45, 90, 39, 0.12);
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+      animation: card-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes card-in {
+      from { opacity: 0; transform: translateY(32px) scale(0.96); }
+      to   { opacity: 1; transform: translateY(0)    scale(1);    }
+    }
+
+    /* ——— Green top stripe ——— */
+    .success-card-stripe {
+      background: linear-gradient(135deg, #2d5a27 0%, #3d7a35 100%);
+      padding: 36px 32px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .success-card-stripe::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 140px; height: 140px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 50%;
+    }
+
+    .success-card-stripe::after {
+      content: '';
+      position: absolute;
+      bottom: -30px; left: -30px;
+      width: 100px; height: 100px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    /* Animated checkmark circle */
+    .check-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      animation: pulse-ring 2.5s ease-in-out infinite;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.25); }
+      50%       { box-shadow: 0 0 0 10px rgba(255,255,255,0); }
+    }
+
+    .check-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: check-pop 0.4s 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+
+    @keyframes check-pop {
+      from { opacity: 0; transform: scale(0.4); }
+      to   { opacity: 1; transform: scale(1);   }
+    }
+
+    .check-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--primary);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    /* SVG checkmark path animation */
+    .check-path {
+      stroke-dasharray: 36;
+      stroke-dashoffset: 36;
+      animation: draw-check 0.45s 0.5s ease forwards;
+    }
+
+    @keyframes draw-check {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .stripe-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.3;
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .stripe-subtitle {
+      font-size: 14px;
+      color: rgba(255,255,255,0.80);
+      line-height: 1.55;
+      max-width: 360px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ——— Card body ——— */
+    .success-card-body {
+      padding: 28px 32px 32px;
+    }
+
+    /* Order details table */
+    .order-details {
+      background: var(--bg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .order-details-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.2s ease;
+    }
+
+    .order-details-row:last-child { border-bottom: none; }
+    .order-details-row:hover { background: #f0f7ed; }
+
+    .order-details-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 120px;
+      flex-shrink: 0;
+      padding-top: 1px;
+    }
+
+    .order-details-value {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      word-break: break-all;
+    }
+
+    .order-id-badge {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .total-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* Items mini-list */
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .item-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .item-chip::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* Trust ribbon */
+    .trust-ribbon {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+    }
+
+    .trust-ribbon-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+    .trust-ribbon-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: #92400e;
+    }
+
+    .trust-ribbon-text strong {
+      display: block;
+      font-size: 14px;
+      color: #78350f;
+      margin-bottom: 2px;
+    }
+
+    /* CTA button */
+    .btn-home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #2d5a27 0%, #3d7a35 100%);
+      color: #ffffff;
+      font-family: var(--font);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 14px rgba(45, 90, 39, 0.30);
+    }
+
+    .btn-home:hover {
+      background: linear-gradient(135deg, #1e3c1a 0%, #2d5a27 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(45, 90, 39, 0.36);
+    }
+
+    .btn-home:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(45, 90, 39, 0.25);
+    }
+
+    .btn-home svg {
+      width: 20px; height: 20px;
+      fill: none; stroke: #fff;
+      stroke-width: 2.5;
+      stroke-linecap: round; stroke-linejoin: round;
+      flex-shrink: 0;
+    }
+
+    /* ——— Footer ——— */
+    .success-footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 540px) {
+      .success-card-stripe { padding: 28px 20px 22px; }
+      .success-card-body   { padding: 20px 20px 24px; }
+      .stripe-title        { font-size: 18px; }
+      .order-details-label { min-width: 100px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M7HFS6DG"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- Logo header -->
+  <header class="success-header">
+    <a href="index.html" class="success-logo" id="logo-link" aria-label="Cross Bag Home">
+      <img src="images/cropped-feelucky-logo-192x192.jpg" alt="Cross Bag Logo" onerror="this.style.display='none'">
+      <span class="success-logo-text">Cross Bag</span>
+    </a>
+  </header>
+
+  <!-- Success Card -->
+  <main>
+    <div class="success-card" role="main" aria-label="Order Confirmation">
+
+      <!-- Green stripe with animated check -->
+      <div class="success-card-stripe">
+        <div class="check-ring">
+          <div class="check-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline class="check-path" points="5,13 9,17 19,7"></polyline>
+            </svg>
+          </div>
+        </div>
+        <h1 class="stripe-title">আপনার অর্ডারটি সফলভাবে সম্পন্ন হয়েছে! 🎉</h1>
+        <p class="stripe-subtitle">ধন্যবাদ আপনার অর্ডারের জন্য। আমরা যত দ্রুত সম্ভব আপনার কাছে পৌঁছে দেব।</p>
+      </div>
+
+      <!-- Body -->
+      <div class="success-card-body">
+
+        <!-- Call reminder banner -->
+        <div class="trust-ribbon" role="alert">
+          <span class="trust-ribbon-icon">📞</span>
+          <div class="trust-ribbon-text">
+            <strong>কনফার্মেশন কল আসবে</strong>
+            আমাদের প্রতিনিধি খুব শীঘ্রই আপনার মোবাইলে কল করে অর্ডারটি নিশ্চিত করবেন। অনুগ্রহ করে ফোনটি সচল রাখুন।
+          </div>
+        </div>
+
+        <!-- Order details -->
+        <div class="order-details" id="order-details-table" role="table" aria-label="Order Summary">
+
+          <div class="order-details-row" role="row">
+            <span class="order-details-label" role="rowheader">অর্ডার আইডি</span>
+            <span class="order-details-value" role="cell">
+              <span class="order-id-badge" id="success-order-id">—</span>
+            </span>
+          </div>
+
+          <div class="order-details-row" role="row">
+            <span class="order-details-label" role="rowheader">সর্বমোট বিল</span>
+            <span class="order-details-value total-value" id="success-order-total" role="cell">—</span>
+          </div>
+
+          <div class="order-details-row" role="row">
+            <span class="order-details-label" role="rowheader">মোবাইল নম্বর</span>
+            <span class="order-details-value" id="success-order-phone" role="cell">—</span>
+          </div>
+
+          <div class="order-details-row" role="row">
+            <span class="order-details-label" role="rowheader">অর্ডার করা পণ্য</span>
+            <div class="order-details-value" role="cell">
+              <div class="items-list" id="success-items-list">—</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Home CTA -->
+        <a href="index.html" class="btn-home" id="home-btn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 12L12 3l9 9"></path>
+            <path d="M9 21V12h6v9"></path>
+          </svg>
+          হোম পেজে ফিরে যান
+        </a>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="success-footer">
+    <p>&copy; 2025 Cross Bag — Premium Canvas Cross Bag</p>
+  </footer>
+
+  <!-- ============================================================
+       SUCCESS PAGE LOGIC
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      var ORDER_KEY = 'last_order_details';
+      var STALE_MS  = 60 * 60 * 1000; // 1 hour — treat stale order data as expired
+
+      // 1. Read order data from localStorage
+      var raw = localStorage.getItem(ORDER_KEY);
+      if (!raw) {
+        // No pending order — send visitor back home
+        window.location.replace('index.html');
+        return;
+      }
+
+      var order;
+      try {
+        order = JSON.parse(raw);
+      } catch (e) {
+        window.location.replace('index.html');
+        return;
+      }
+
+      // Guard: reject stale data (older than 1 hour)
+      if (!order.orderId || Date.now() - (order.timestamp || 0) > STALE_MS) {
+        localStorage.removeItem(ORDER_KEY);
+        window.location.replace('index.html');
+        return;
+      }
+
+      // 2. Render order details into DOM
+      var el = function (id) { return document.getElementById(id); };
+
+      el('success-order-id').textContent    = order.orderId;
+      el('success-order-total').textContent = '\u09f3' + order.total;   // ৳ symbol
+      el('success-order-phone').textContent = order.phone;
+
+      // Items list
+      var itemsList = el('success-items-list');
+      itemsList.innerHTML = '';
+      if (order.items && order.items.length) {
+        order.items.forEach(function (item) {
+          var chip = document.createElement('span');
+          chip.className = 'item-chip';
+          chip.textContent = item.name + ' \u00d7' + item.quantity + ' — \u09f3' + (item.price * item.quantity);
+          itemsList.appendChild(chip);
+        });
+      }
+
+      // 3. Push GTM purchase event (only once, then clear data)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'purchase',
+        ecommerce: {
+          transaction_id: order.orderId,
+          value:          order.total,
+          currency:       'BDT',
+          items: (order.items || []).map(function (item) {
+            return {
+              item_name: item.name,
+              price:     item.price,
+              quantity:  item.quantity
+            };
+          })
+        }
+      });
+
+      // 4. Clear order data from localStorage now that GTM has fired
+      localStorage.removeItem(ORDER_KEY);
+
+    })();
+  </script>
+
+</body>
+</html>

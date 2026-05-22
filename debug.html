@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resource Load Debugger - Cross Bag</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: monospace; background: #0d1117; color: #c9d1d9; padding: 20px; }
+  h1 { color: #58a6ff; margin-bottom: 20px; font-size: 18px; }
+  .section { margin-bottom: 30px; }
+  .section h2 { color: #8b949e; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 1px solid #21262d; }
+  .item { display: flex; align-items: center; gap: 10px; padding: 4px 0; font-size: 12px; }
+  .status { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .ok { background: #238636; }
+  .fail { background: #da3633; }
+  .loading { background: #d29922; animation: pulse 1s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .file { color: #79c0ff; }
+  .error-msg { color: #f85149; font-size: 11px; margin-left: 22px; }
+  #summary { position: fixed; top: 20px; right: 20px; background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 15px; min-width: 180px; }
+  #summary h3 { color: #58a6ff; margin-bottom: 8px; font-size: 13px; }
+  .stat { display: flex; justify-content: space-between; gap: 20px; font-size: 12px; margin: 3px 0; }
+  .stat-ok { color: #3fb950; }
+  .stat-fail { color: #f85149; }
+  .stat-total { color: #8b949e; }
+</style>
+</head>
+<body>
+<h1>🔍 Resource Load Status — cross-bag</h1>
+
+<div id="summary">
+  <h3>Summary</h3>
+  <div class="stat"><span>✅ Loaded:</span><span class="stat-ok" id="count-ok">0</span></div>
+  <div class="stat"><span>❌ Failed:</span><span class="stat-fail" id="count-fail">0</span></div>
+  <div class="stat"><span>Total:</span><span class="stat-total" id="count-total">0</span></div>
+</div>
+
+<div class="section">
+  <h2>📄 JavaScript Files</h2>
+  <div id="js-list"></div>
+</div>
+
+<div class="section">
+  <h2>🎨 CSS Files</h2>
+  <div id="css-list"></div>
+</div>
+
+<script>
+const jsFiles = [
+  "js/gtm.js","js/jquery.min.js","js/jquery-migrate.min.js","js/jquery.blockUI.min.js",
+  "js/add-to-cart.min.js","js/selectWoo.full.min.js","js/js.cookie.min.js","js/woocommerce.min.js",
+  "js/country-select.min.js","js/address-i18n.min.js","js/checkout.min.js","js/woocommerce.js",
+  "js/woocommerce-checkout.js","js/jquery.cookie.min.js","js/frontend_1.js","js/frontend.js",
+  "js/analytics.js","js/utils.min.js","js/moxie.min.js","js/plupload.min.js","js/front.js",
+  "js/wp-emoji-release.min.js","js/smart-order-filter.js","js/sourcebuster.min.js",
+  "js/order-attribution.min.js","js/webpack.runtime.min.js","js/frontend-modules.min.js",
+  "js/core.min.js","js/frontend.min.js","js/swiper.min.js","js/checkout-template.js",
+  "js/checkout.js","js/underscore.min.js","js/shortcode.min.js","js/backbone.min.js",
+  "js/wp-util.min.js","js/wp-backbone.min.js","js/media-models.min.js","js/wp-plupload.min.js",
+  "js/mouse.min.js","js/sortable.min.js","js/mediaelement-and-player.min.js",
+  "js/mediaelement-migrate.min.js","js/wp-mediaelement.min.js","js/api-request.min.js",
+  "js/dom-ready.min.js","js/hooks.min.js","js/i18n.min.js","js/a11y.min.js","js/clipboard.min.js",
+  "js/media-views.min.js","js/media-editor.min.js","js/media-audiovideo.min.js",
+  "js/add-to-cart-variation.min.js","js/jquery.flexslider.min.js","js/webpack-pro.runtime.min.js",
+  "js/frontend.min_1.js","js/elements-handlers.min.js","js/phone-block-checker.js",
+  "js/incomplete-orders.js","js/repeat-order-blocker.js","js/blocked-user.js",
+  "js/vpn-block.js","js/phone-validation.js","js/fraud-detection.js"
+];
+
+const cssFiles = [
+  "css/frontend_3.css","css/frontend.css","css/woocommerce-blocktheme.css","css/style-blocks.css",
+  "css/style-blocks_1.css","css/select2.css","css/woocommerce-layout.css","css/woocommerce-smallscreen.css",
+  "css/woocommerce.css","css/phone-validation.css","css/vpn-block.css","css/dashicons.min.css",
+  "css/style.css","css/blocked-user.css","css/otp-verification.css","css/smart-order-filter.css",
+  "css/cartflows-normalize.css","css/frontend_1.css","css/frontend_2.css","css/frontend.min.css",
+  "css/post-7.css","css/widget-image.min.css","css/widget-heading.min.css",
+  "css/widget-animated-headline.min.css","css/swiper.min.css","css/e-swiper.min.css",
+  "css/widget-image-carousel.min.css","css/e-animation-push.min.css","css/shapes.min.css",
+  "css/widget-countdown.min.css","css/widget-image-box.min.css","css/widget-icon-list.min.css",
+  "css/fadeInDown.min.css","css/fadeInRight.min.css","css/widget-social-icons.min.css",
+  "css/apple-webkit.min.css","css/post-16.css","css/checkout-template.css","css/checkout-styles.css",
+  "css/multistep-checkout.css","css/roboto.css","css/robotoslab.css","css/hindsiliguri.css",
+  "css/montserrat.css","css/anekbangla.css","css/balooda2.css","css/tirobangla.css",
+  "css/front.css","css/imgareaselect.css","css/media-views.min.css","css/mediaelementplayer-legacy.min.css",
+  "css/wp-mediaelement.min.css","css/tw-bs4.css","css/buttons.min.css","css/wc-blocks.css",
+  "css/woocommerce-blocktheme.css"
+];
+
+let okCount = 0, failCount = 0;
+
+function testFile(url, container, type) {
+  const div = document.createElement('div');
+  div.className = 'item';
+  const statusDot = document.createElement('div');
+  statusDot.className = 'status loading';
+  const label = document.createElement('span');
+  label.className = 'file';
+  label.textContent = url;
+  div.appendChild(statusDot);
+  div.appendChild(label);
+  container.appendChild(div);
+
+  return fetch(url, { method: 'HEAD' })
+    .then(r => {
+      if (r.ok) {
+        statusDot.className = 'status ok';
+        okCount++;
+      } else {
+        statusDot.className = 'status fail';
+        const errMsg = document.createElement('div');
+        errMsg.className = 'error-msg';
+        errMsg.textContent = `HTTP ${r.status} ${r.statusText}`;
+        container.appendChild(errMsg);
+        failCount++;
+      }
+    })
+    .catch(e => {
+      statusDot.className = 'status fail';
+      const errMsg = document.createElement('div');
+      errMsg.className = 'error-msg';
+      errMsg.textContent = `Network error: ${e.message}`;
+      container.appendChild(errMsg);
+      failCount++;
+    })
+    .finally(() => {
+      document.getElementById('count-ok').textContent = okCount;
+      document.getElementById('count-fail').textContent = failCount;
+      document.getElementById('count-total').textContent = okCount + failCount;
+    });
+}
+
+const jsList = document.getElementById('js-list');
+const cssList = document.getElementById('css-list');
+
+Promise.all([
+  ...jsFiles.map(f => testFile(f, jsList, 'js')),
+  ...cssFiles.map(f => testFile(f, cssList, 'css'))
+]);
+</script>
+</body>
+</html>
