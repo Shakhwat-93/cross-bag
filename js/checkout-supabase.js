@@ -457,8 +457,8 @@
       }
 
       // 2. Duplicate order check / Rate limiting
-      // Exception Phone: 01315183993 bypasses rate limit check
-      if (phone !== '01315183993') {
+      // Exception Phones: 01315183993 and 01953986982 bypass rate limit check
+      if (phone !== '01315183993' && phone !== '01953986982') {
         const threeHoursAgo = new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString();
 
         // A. Phone check in DB
